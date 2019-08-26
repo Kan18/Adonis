@@ -368,6 +368,15 @@ return function()
 					return temp
 				end
 			end;
+			
+			ServerList = function()
+				local servers = Core.GetData("PrivateServers") or {}
+				local tab = {}
+				for i,v in pairs(servers) do
+					table.insert(tab,{Text = i,Desc = "Place: "..v.ID.." | Code: "..v.Code})
+				end
+				return tab
+			end;
 		};
 	};
 	

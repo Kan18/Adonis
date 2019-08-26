@@ -6363,12 +6363,18 @@ return function()
 			Fun = false;
 			AdminLevel = "Moderators";
 			Function = function(plr,args)
-				local servers = Core.GetData("PrivateServers") or {}
-				local tab = {}
-				for i,v in pairs(servers) do
-					table.insert(tab,{Text = i,Desc = "Place: "..v.ID.." | Code: "..v.Code})
+				local auto
+				
+				if args[1] and type(args[1]) == "string" and (args[1]:lower() == "yes" or args[1]:lower() == "true") then
+					auto = 1
 				end
-				Remote.MakeGui(plr,"List",{Title = "Servers",Table = tab})
+				
+				Remote.MakeGui(plr,'List',{
+					Title = 'Chat Logs';
+					Tab = Logs.ListUpdaters.ServerList(); 
+					Update = "ServerList";
+					AutoUpdate = auto;
+				})
 			end
 		};
 		
